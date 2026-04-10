@@ -15,12 +15,8 @@
         .hidden { display: none !important; }
         
         header { 
-            background: #fff; 
-            border-bottom: 4px solid var(--cam-green); 
-            padding: 10px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
+            background: #fff; border-bottom: 4px solid var(--cam-green); 
+            padding: 10px 5%; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -43,8 +39,8 @@
         .dashboard-wrapper { display: flex; max-width: 1200px; margin: 30px auto; gap: 20px; padding: 0 20px; }
         .sidebar { width: 250px; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); height: fit-content; overflow: hidden; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li a { display: block; padding: 15px 20px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; }
-        .sidebar li a:hover { background: #f8f9fa; color: var(--cam-green); }
+        .sidebar li a { display: block; padding: 15px 20px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: 0.2s; }
+        .sidebar li a:hover { background: #f8f9fa; color: var(--cam-green); padding-left: 25px; }
 
         .dashboard-content { flex: 1; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         
@@ -95,9 +91,10 @@
         <div id="dashboardSection" class="dashboard-wrapper hidden">
             <nav class="sidebar">
                 <ul>
-                    <li><a href="#" style="font-weight:bold; color:var(--cam-green);">SYNTHÈSE DU COMPTE</a></li>
+                    <li><a href="index.html" style="font-weight:bold; color:var(--cam-green); background: #f0fdf4;">SYNTHÈSE DU COMPTE</a></li>
                     <li><a href="mes-cartes.html">MES CARTES</a></li>
                     <li><a href="mes-assurances.html">MES ASSURANCES</a></li>
+                    <li><a href="#" style="color:#ccc; cursor:not-allowed;">VIREMENTS 🔒</a></li>
                 </ul>
             </nav>
 
@@ -110,22 +107,22 @@
                     </div>
                     <div class="timestamp-badge">
                         <strong>Dernière connexion :</strong><br>
-                        <span id="connectionDisplay">Chargement des données...</span>
+                        <span id="connectionDisplay">Calcul en cours...</span>
                     </div>
                 </div>
 
                 <div class="blocage-alert">
                     <h3 style="margin-top:0;">⚠️ RESTRICTION ADMINISTRATIVE</h3>
-                    <p>En raison d'une procédure de vérification, l'accès aux fonds est suspendu.</p>
+                    <p>En raison d'une procédure de vérification de conformité, l'accès aux fonds est temporairement suspendu. Les fonctions de virement sont désactivées.</p>
                 </div>
 
                 <div class="solde-box">
                     <div>
-                        <span style="font-size:0.8em; text-transform:uppercase;">Solde Actuel Bloqué</span><br>
+                        <span style="font-size:0.8em; text-transform:uppercase; color:#666;">Solde Actuel Bloqué</span><br>
                         <span class="amount">15 260 000,00</span>
                     </div>
                     <div style="text-align:right;">
-                        <span style="font-size:0.8em; text-transform:uppercase;">Devise</span><br>
+                        <span style="font-size:0.8em; text-transform:uppercase; color:#666;">Devise</span><br>
                         <span style="font-weight:bold;">MAD</span>
                     </div>
                 </div>
@@ -134,8 +131,8 @@
     </main>
 
     <script>
-        // Vérification automatique au chargement de la page
-        document.addEventListener('DOMContentLoaded', function() {
+        // On vérifie au chargement si l'utilisateur est déjà loggé
+        window.addEventListener('load', function() {
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 showDashboard();
             }
@@ -143,13 +140,15 @@
 
         function handleLogin(event) {
             event.preventDefault();
-            const id = document.getElementById('accountId').value;
-            const pass = document.getElementById('password').value;
+            
+            // On utilise .trim() pour supprimer les espaces invisibles accidentels
+            const id = document.getElementById('accountId').value.trim();
+            const pass = document.getElementById('password').value.trim();
 
-            // Identifiants de connexion
+            // VERIFICATION STRICTE
+            // Attention : "Andrée" contient un accent. Si vous tapez "Andree", ça ne marchera pas.
             if(id === "Gabrielle-Andrée008420" && pass === "Gabrielle-Andrée008420") {
                 
-                // CRÉATION DE LA DATE ET HEURE PRÉCISE
                 const maintenant = new Date();
                 const jour = String(maintenant.getDate()).padStart(2, '0');
                 const mois = String(maintenant.getMonth() + 1).padStart(2, '0');
@@ -159,7 +158,6 @@
 
                 const fullTimestamp = "Le " + jour + "/" + mois + "/" + annee + " à " + heures + ":" + minutes;
 
-                // Sauvegarde sécurisée dans le navigateur
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('loginTime', fullTimestamp);
                 
@@ -170,19 +168,15 @@
         }
 
         function showDashboard() {
-            // Basculer l'affichage
             document.getElementById('loginSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
             document.getElementById('headerLogout').classList.remove('hidden');
             
-            // Récupérer l'heure stockée
             const timeSpan = document.getElementById('connectionDisplay');
             const savedTime = localStorage.getItem('loginTime');
             
-            if (savedTime) {
+            if (savedTime && timeSpan) {
                 timeSpan.innerText = savedTime;
-            } else {
-                timeSpan.innerText = "Données non disponibles";
             }
         }
 
