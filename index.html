@@ -7,10 +7,8 @@
     <style>
         :root { 
             --cam-green: #008751; 
-            --cam-green-dark: #005a36;
             --cam-red: #ed1c24; 
             --bg-gray: #f4f7f6;
-            --shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-gray); margin: 0; color: #2d3748; }
@@ -24,76 +22,54 @@
             justify-content: space-between; 
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
-        .logo-link { text-decoration: none; color: inherit; transition: opacity 0.2s; }
-        .logo-link:hover { opacity: 0.8; }
-
         .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-text { line-height: 1; }
-        .logo-text h1 { margin: 0; font-size: 1.2em; color: #444; text-transform: uppercase; letter-spacing: 1px; }
+        .logo-text h1 { margin: 0; font-size: 1.2em; color: #444; text-transform: uppercase; }
         .logo-text p { margin: 0; font-size: 0.7em; color: var(--cam-green); font-weight: bold; letter-spacing: 2px; }
         .red-bar { width: 40px; height: 6px; background: var(--cam-red); margin-top: 5px; }
 
-        .login-container { max-width: 400px; margin: 80px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: var(--shadow); text-align: center; border-top: 5px solid var(--cam-green); }
-        .login-container h2 { color: #333; margin-bottom: 30px; font-weight: 300; }
-        
+        .login-container { max-width: 400px; margin: 80px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
         .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; margin-bottom: 8px; font-size: 0.85em; font-weight: 600; color: #666; }
-        .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1em; transition: border 0.3s; background: #f9f9f9; }
-        .input-group input:focus { outline: none; border-color: var(--cam-green); background: #fff; }
+        .input-group label { display: block; margin-bottom: 8px; font-size: 0.85em; font-weight: 600; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
         
         button { 
-            width: 100%; 
-            padding: 15px; 
-            background: #004a99; 
-            color: white; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 1em;
-            transition: all 0.3s;
+            width: 100%; padding: 15px; background: #004a99; color: white; border: none; border-radius: 6px; 
+            cursor: pointer; font-weight: bold; transition: 0.3s;
         }
-        button:hover { background: #003366; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,74,153,0.2); }
+        button:hover { background: #003366; }
 
-        .dashboard-wrapper { display: flex; max-width: 1200px; margin: 30px auto; gap: 25px; padding: 0 20px; }
-        .dashboard-content { flex: 1; background: #fff; padding: 35px; border-radius: 8px; box-shadow: var(--shadow); }
-        
-        .user-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
-        .timestamp-box { text-align: right; font-size: 0.75em; color: #718096; background: #f8f9fa; padding: 10px 15px; border-radius: 6px; border: 1px solid #edf2f7; }
-
-        .blocage-alert { background: #fff5f5; color: var(--cam-red); padding: 20px; border: 1px solid #feb2b2; margin-bottom: 30px; border-radius: 6px; }
-
-        .solde-box { display: flex; justify-content: space-between; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 8px; border-left: 6px solid var(--cam-green); }
-        .amount { font-size: 2.2em; font-weight: 800; color: #1a202c; }
-
-        .error { color: var(--cam-red); font-size: 0.85em; margin-bottom: 15px; font-weight: 600; }
-
-        .sidebar { width: 260px; background: #fff; padding: 0; border-radius: 8px; box-shadow: var(--shadow); height: fit-content; overflow: hidden; }
-        .sidebar-header { background: var(--cam-green); color: white; padding: 15px 20px; font-size: 0.85em; font-weight: bold; text-transform: uppercase; }
+        .dashboard-wrapper { display: flex; max-width: 1200px; margin: 30px auto; gap: 20px; padding: 0 20px; }
+        .sidebar { width: 250px; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); height: fit-content; overflow: hidden; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li { border-bottom: 1px solid #f1f5f9; }
-        .sidebar a { text-decoration: none; color: #4a5568; font-size: 0.9em; font-weight: 500; display: block; padding: 15px 20px; transition: all 0.2s; }
-        .sidebar a:hover { background: #f8fafc; color: var(--cam-green); padding-left: 25px; }
-        .active-link { background: #f0fdf4; color: var(--cam-green) !important; border-left: 5px solid var(--cam-green); font-weight: 700 !important; }
+        .sidebar li a { display: block; padding: 15px 20px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; }
+        .sidebar li a:hover { background: #f8f9fa; color: var(--cam-green); }
+
+        .dashboard-content { flex: 1; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        .info-bar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
+        .timestamp-badge { 
+            font-size: 0.75em; color: #4a5568; background: #edf2f7; padding: 10px 15px; border-radius: 6px; border: 1px solid #cbd5e0; 
+            line-height: 1.4; text-align: right;
+        }
+
+        .blocage-alert { background: #fff5f5; color: var(--cam-red); padding: 20px; border: 1px solid #feb2b2; margin-bottom: 25px; border-radius: 6px; }
+        .solde-box { display: flex; justify-content: space-between; background: #f0fdf4; padding: 25px; border-radius: 8px; border-left: 6px solid var(--cam-green); }
+        .amount { font-size: 2.2em; font-weight: bold; }
+        .error { color: var(--cam-red); font-size: 0.85em; margin-bottom: 15px; font-weight: bold; }
     </style>
 </head>
-<body onload="checkNavigation()">
+<body>
 
     <header>
-        <a href="https://www.creditagricole.ma/" target="_blank" class="logo-link">
-            <div class="logo-container">
-                <div class="logo-text">
-                    <h1>CREDIT AGRICOLE DU MAROC</h1>
-                    <div class="red-bar"></div>
-                    <p>UN ENGAGEMENT DURABLE</p>
-                </div>
+        <div class="logo-container">
+            <div class="logo-text">
+                <h1>CREDIT AGRICOLE DU MAROC</h1>
+                <div class="red-bar"></div>
+                <p>UN ENGAGEMENT DURABLE</p>
             </div>
-        </a>
+        </div>
         <div id="headerLogout" class="hidden">
             <button onclick="logout()" style="width:auto; padding:8px 20px; background:var(--cam-green);">Déconnexion</button>
         </div>
@@ -101,118 +77,118 @@
 
     <main>
         <div id="loginSection" class="login-container">
-            <h2>Espace Client</h2>
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <h2>Accès à vos comptes</h2>
+            <form onsubmit="handleLogin(event)">
                 <div class="input-group">
                     <label>Identifiant personnel</label>
-                    <input type="text" id="accountId" placeholder="ID de connexion" required autocomplete="off">
+                    <input type="text" id="accountId" placeholder="Entrez votre ID" required>
                 </div>
                 <div class="input-group">
                     <label>Code secret</label>
                     <input type="password" id="password" placeholder="••••••••" required>
                 </div>
                 <div id="errorMessage" class="error"></div>
-                <button type="submit">ACCÉDER À MES COMPTES</button>
+                <button type="submit">SE CONNECTER</button>
             </form>
-            <p style="font-size:0.7em; color:#aaa; margin-top:25px;">Session sécurisée par cryptage AES-256.</p>
         </div>
 
         <div id="dashboardSection" class="dashboard-wrapper hidden">
             <nav class="sidebar">
-                <div class="sidebar-header">Menu Principal</div>
                 <ul>
-                    <li><a href="#" class="active-link">SYNTHÈSE DU COMPTE</a></li>
+                    <li><a href="#" style="font-weight:bold; color:var(--cam-green);">SYNTHÈSE DU COMPTE</a></li>
                     <li><a href="mes-cartes.html">MES CARTES</a></li>
                     <li><a href="mes-assurances.html">MES ASSURANCES</a></li>
-                    <li><a href="#" style="color:#cbd5e0; cursor:not-allowed;">VIREMENTS (BLOQUÉ)</a></li>
                 </ul>
             </nav>
 
             <div class="dashboard-content">
-                <div class="user-header">
+                <div class="info-bar">
                     <div>
-                        <h2 style="margin:0; font-size: 1.5em;">Bonjour,</h2>
-                        <h3 style="margin:5px 0; color:var(--cam-green); font-weight: 600;">Mme GUEGANIC ép.ASCHAUER Daniele Gabrielle Andrée</h3>
-                        <p style="color:#718096; font-size:0.9em; margin: 5px 0;">Compte Chèques n° 2544 8796 0084 2000</p>
+                        <h2 style="margin:0;">Bonjour,</h2>
+                        <h3 style="margin:5px 0; color:#444;">Mme GUEGANIC ép.ASCHAUER Daniele Gabrielle Andrée</h3>
+                        <p style="color:#718096; font-size:0.9em;">Compte Chèques n° 2544 8796 0084 2000</p>
                     </div>
-                    <div class="timestamp-box">
+                    <div class="timestamp-badge">
                         <strong>Dernière connexion :</strong><br>
-                        <span id="connectionTimestamp">Chargement...</span>
+                        <span id="connectionDisplay">Chargement des données...</span>
                     </div>
                 </div>
 
                 <div class="blocage-alert">
-                    <h3 style="margin-top:0; font-size: 1.1em;">⚠️ ALERTE : RESTRICTION ADMINISTRATIVE</h3>
-                    <p style="margin-bottom: 0; font-size: 0.95em;">En raison d'une procédure de vérification de conformité, l'accès à vos fonds est suspendu. Contactez votre conseiller pour régulariser votre situation.</p>
+                    <h3 style="margin-top:0;">⚠️ RESTRICTION ADMINISTRATIVE</h3>
+                    <p>En raison d'une procédure de vérification, l'accès aux fonds est suspendu.</p>
                 </div>
 
                 <div class="solde-box">
                     <div>
-                        <span style="font-size:0.85em; color:#4a5568; text-transform:uppercase; font-weight: 600;">Solde Net Bloqué</span><br>
+                        <span style="font-size:0.8em; text-transform:uppercase;">Solde Actuel Bloqué</span><br>
                         <span class="amount">15 260 000,00</span>
                     </div>
                     <div style="text-align:right;">
-                        <span style="font-size:0.85em; color:#4a5568; text-transform:uppercase; font-weight: 600;">Devise</span><br>
-                        <span style="font-weight:bold; color: var(--cam-green-dark);">MAD</span>
+                        <span style="font-size:0.8em; text-transform:uppercase;">Devise</span><br>
+                        <span style="font-weight:bold;">MAD</span>
                     </div>
-                </div>
-
-                <div style="margin-top:40px; border-top: 1px solid #edf2f7; padding-top: 20px;">
-                    <h3 style="font-size: 1.1em; color: #4a5568;">Historique des opérations</h3>
-                    <p style="font-size:0.9em; color:#a0aec0; font-style: italic;">Aucune transaction récente à afficher.</p>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        function checkNavigation() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const isLoggedIn = localStorage.getItem('fidelisLoggedIn') === 'true';
-
-            if (isLoggedIn) {
+        // Vérification automatique au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
                 showDashboard();
             }
-        }
+        });
 
         function handleLogin(event) {
             event.preventDefault();
-            const id = document.getElementById('accountId').value.trim();
-            const pass = document.getElementById('password').value.trim();
+            const id = document.getElementById('accountId').value;
+            const pass = document.getElementById('password').value;
 
-            const idValide = "Gabrielle-Andrée008420";
-            const passValide = "Gabrielle-Andrée008420";
-
-            if(id === idValide && pass === passValide) {
-                // Générer le timestamp de connexion
-                const maintenant = new Date();
-                const formattedDate = maintenant.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-                const formattedTime = maintenant.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+            // Identifiants de connexion
+            if(id === "Gabrielle-Andrée008420" && pass === "Gabrielle-Andrée008420") {
                 
-                localStorage.setItem('fidelisLoggedIn', 'true');
-                localStorage.setItem('lastLogin', `${formattedDate} à ${formattedTime}`);
+                // CRÉATION DE LA DATE ET HEURE PRÉCISE
+                const maintenant = new Date();
+                const jour = String(maintenant.getDate()).padStart(2, '0');
+                const mois = String(maintenant.getMonth() + 1).padStart(2, '0');
+                const annee = maintenant.getFullYear();
+                const heures = String(maintenant.getHours()).padStart(2, '0');
+                const minutes = String(maintenant.getMinutes()).padStart(2, '0');
+
+                const fullTimestamp = "Le " + jour + "/" + mois + "/" + annee + " à " + heures + ":" + minutes;
+
+                // Sauvegarde sécurisée dans le navigateur
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('loginTime', fullTimestamp);
                 
                 showDashboard();
             } else {
-                document.getElementById('errorMessage').innerText = "Identifiant ou mot de passe invalide.";
+                document.getElementById('errorMessage').innerText = "Identifiant ou mot de passe incorrect.";
             }
         }
 
         function showDashboard() {
+            // Basculer l'affichage
             document.getElementById('loginSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
             document.getElementById('headerLogout').classList.remove('hidden');
             
-            // Afficher le timestamp stocké
-            const lastLogin = localStorage.getItem('lastLogin');
-            if (lastLogin) {
-                document.getElementById('connectionTimestamp').innerText = lastLogin;
+            // Récupérer l'heure stockée
+            const timeSpan = document.getElementById('connectionDisplay');
+            const savedTime = localStorage.getItem('loginTime');
+            
+            if (savedTime) {
+                timeSpan.innerText = savedTime;
+            } else {
+                timeSpan.innerText = "Données non disponibles";
             }
         }
 
         function logout() {
-            localStorage.removeItem('fidelisLoggedIn');
-            window.location.href = 'index.html';
+            localStorage.clear();
+            window.location.reload();
         }
     </script>
 </body>
