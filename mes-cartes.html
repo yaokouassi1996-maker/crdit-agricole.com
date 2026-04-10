@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Assurances | Crédit Agricole du Maroc</title> 
+    <title>Mes Cartes Bancaires | Crédit Agricole du Maroc</title> 
     <style>
         :root { 
             --cam-green: #008751; 
@@ -42,14 +42,11 @@
         
         .blocage-alert { background: #fff5f5; color: var(--cam-red); padding: 20px; border: 1px solid #feb2b2; margin-bottom: 25px; border-radius: 4px; border-left: 5px solid var(--cam-red); }
 
-        .insurance-item { border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; background: #fafafa; position: relative; }
-        .insurance-item h4 { margin-top: 0; color: var(--cam-green); font-size: 1.1em; }
-        .insurance-item p { margin: 8px 0; font-size: 0.95em; color: #444; }
-        .status-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
-        .status-active { background: #e6fffa; color: #2c7a7b; }
+        .card-item { border: 1px solid #eee; padding: 20px; border-radius: 12px; margin-bottom: 20px; background: linear-gradient(135deg, #fdfdfd 0%, #f1f1f1 100%); position: relative; border-left: 8px solid #ccc; }
+        .card-item h4 { margin-top: 0; color: #333; font-size: 1.1em; }
+        .card-number { font-family: 'Courier New', Courier, monospace; font-size: 1.2em; letter-spacing: 2px; color: #444; margin: 15px 0; }
+        .status-tag { display: inline-block; padding: 5px 12px; border-radius: 4px; font-size: 0.75em; font-weight: bold; background: var(--cam-red); color: white; }
         
-        .error-msg { color: var(--cam-red); font-weight: bold; font-size: 0.85em; margin-top: 10px; display: block; }
-
         footer { text-align: center; padding: 30px; color: #888; font-size: 0.8em; }
         button.logout-btn { padding: 8px 15px; background: var(--cam-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
@@ -81,43 +78,43 @@
             <nav class="sidebar">
                 <ul>
                     <li><a href="index.html?view=dashboard">RÉSUMÉ DES COMPTES</a></li>
-                    <li><a href="mes-cartes.html">MES CARTES BANCAIRES</a></li>
-                    <li><a href="mes-assurances.html" class="active">● MES ASSURANCES</a></li>
+                    <li><a href="mes-cartes.html" class="active">● MES CARTES BANCAIRES</a></li>
+                    <li><a href="mes-assurances.html">MES ASSURANCES</a></li>
                     <li><a href="#" style="color:#ccc; cursor:not-allowed;">VIREMENTS 🔒</a></li>
                 </ul>
             </nav>
 
             <div class="dashboard-content">
-                <p style="color:#888; font-size: 0.8em; margin-bottom: 10px;">Accueil > Mes assurances</p>
-                <h2 style="margin-top:0;">Gestion des Contrats d'Assurance</h2>
+                <p style="color:#888; font-size: 0.8em; margin-bottom: 10px;">Accueil > Mes cartes</p>
+                <h2 style="margin-top:0;">Gestion de vos Cartes</h2>
 
                 <div class="blocage-alert">
-                    <h3 style="margin-top:0;">⚠️ ACCÈS AUX CONTRATS LIMITÉ</h3>
-                    <p>En raison de la restriction administrative sur votre compte principal, la gestion en ligne de vos assurances (modification de bénéficiaire, résiliation) est temporairement suspendue.</p>
+                    <h3 style="margin-top:0;">⚠️ SERVICES DE PAIEMENT INTERROMPUS</h3>
+                    <p>Conformément à la procédure de saisie conservatoire n°3302-CAM, tous vos moyens de paiement rattachés au compte 2544...2000 ont été désactivés.</p>
                 </div>
 
-                <div class="insurance-section">
-                    <h3>Vos Garanties Actives</h3>
+                <div class="card-section">
+                    <h3>Vos Cartes de Paiement</h3>
                     
-                    <div class="insurance-item">
-                        <span class="status-badge status-active">En vigueur</span>
-                        <h4>Assurance Vie "Prévoyance CAM"</h4>
-                        <p>Contrat N° : <strong>AV-008420-CAM</strong></p>
-                        <p>Capital garanti : 500 000,00 MAD</p>
-                        <span class="error-msg">❌ Prélèvement de la cotisation en échec (Compte bloqué)</span>
+                    <div class="card-item">
+                        <span class="status-tag">CARTE BLOQUÉE</span>
+                        <h4>Visa Premier Gold</h4>
+                        <p class="card-number">XXXX XXXX XXXX 4567</p>
+                        <p>Titulaire : <strong>Mme G. ANDREE</strong></p>
+                        <p style="font-size: 0.85em; color: #666;">Plafond mensuel : 50 000 MAD (Indisponible)</p>
                     </div>
 
-                    <div class="insurance-item">
-                        <span class="status-badge status-active">En vigueur</span>
-                        <h4>Multirisque Habitation "Sakan"</h4>
-                        <p>Contrat N° : <strong>MR-99210-PRO</strong></p>
-                        <p>Échéance annuelle : 01/06/2026</p>
-                        <p style="color: #2c7a7b; font-weight: bold; font-size: 0.85em;">✅ Couverture maintenue par dérogation exceptionnelle</p>
+                    <div class="card-item">
+                        <span class="status-tag">CARTE BLOQUÉE</span>
+                        <h4>Mastercard Business</h4>
+                        <p class="card-number">XXXX XXXX XXXX 8901</p>
+                        <p>Titulaire : <strong>Utilisateur Secondaire</strong></p>
+                        <p style="font-size: 0.85em; color: #666;">Usage : Professionnel</p>
                     </div>
                     
-                    <div style="margin-top: 40px; padding: 20px; border: 1px dashed #ccc; border-radius: 8px; text-align: center;">
-                        <p style="color: #666; font-style: italic; font-size: 0.85em; line-height: 1.6;">
-                            Pour toute déclaration de sinistre ou demande d'attestation urgente, merci de vous rendre dans votre agence de rattachement munie d'une pièce d'identité en cours de validité.
+                    <div style="margin-top: 30px; background: #fffbe6; border: 1px solid #ffe58f; padding: 15px; border-radius: 4px;">
+                        <p style="color: #856404; font-size: 0.85em; margin: 0;">
+                            <strong>Note :</strong> Toute tentative d'utilisation de ces cartes en distributeur automatique peut entraîner la capture physique de la carte par l'automate pour des raisons de sécurité.
                         </p>
                     </div>
                 </div>
@@ -126,7 +123,7 @@
     </main>
 
     <footer>
-        <p>&copy;  © 2019 Groupe Crédit Agricole du Maroc. Tous droits réservés. <br> Sécurité certifiée par l'ACAPS ISO 27701.</p>
+        <p>&copy; © 2019 Groupe Crédit Agricole du Maroc. Tous droits réservés. <br> Régulation par Bank Al-Maghrib.</p>
     </footer>
 
     <script>
